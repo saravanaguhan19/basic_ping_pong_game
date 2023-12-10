@@ -20,13 +20,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ball.style.top = `${ballY}px`;
     // if (ballX > 680 || ballX <= 0) dx *= -1;
     // if (ballY > 380 || ballY <= 0) dy *= -1;
-
+    if (
+      ballX < paddle.offsetLeft + paddle.offsetWidth &&
+      ballY > paddle.offsetTop &&
+      ballY - ball.offsetHeight < paddle.offsetTop + paddle.offsetHeight
+    ) {
+      dx *= -1;
+    }
     if (ballX > table.offsetWidth - ball.offsetWidth || ballX <= 0) dx *= -1;
     if (ballY > table.offsetHeight - ball.offsetWidth || ballY <= 0) dy *= -1;
   }, 1);
 
   let paddleY = 0;
-  let dPy = 5; // displacement of paddle in y-direction
+  let dPy = 10; // displacement of paddle in y-direction
 
   document.addEventListener("keydown", (event) => {
     event.preventDefault();

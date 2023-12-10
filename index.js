@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let table = document.getElementById("ping-pong-table");
   let ball = document.getElementById("ball"); //targetting the ball element
 
   //here the ballX and ballY will be helping us to set a starting point w.r.t table
@@ -16,7 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ballY += dy;
     ball.style.left = `${ballX}px`;
     ball.style.top = `${ballY}px`;
-    if (ballX > 680 || ballX <= 0) dx *= -1;
-    if (ballY > 380 || ballY <= 0) dy *= -1;
-  }, 10);
+    // if (ballX > 680 || ballX <= 0) dx *= -1;
+    // if (ballY > 380 || ballY <= 0) dy *= -1;
+
+    if (ballX > table.offsetWidth - ball.offsetWidth || ballX <= 0) dx *= -1;
+    if (ballY > table.offsetHeight - ball.offsetWidth || ballY <= 0) dy *= -1;
+  }, 1);
 });
